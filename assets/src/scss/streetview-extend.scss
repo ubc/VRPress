@@ -1,0 +1,146 @@
+.map-container{
+
+    &__hotspot-modal{
+        width: 70%;
+        max-width: 800px;
+        left: 50% !important;
+        top: 50% !important;
+        background: #fff;
+        transform: translate( -50%, -50% );
+        user-select: text;
+        font-size: 16px;
+        display: none;
+    
+        &.show{
+            display: block;
+        }
+    }
+
+    &__hotspot-modal-heading{
+        background: #000;
+        position: relative;
+
+        h2{
+            padding: 10px !important;
+            font-size: 16px !important;
+            color: #fff;
+            margin: 0 !important;
+        }
+
+        button{
+            position: absolute;
+            right: 10px;
+            top: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            height: 100%;
+    
+            img{
+                width: 15px;
+                color: #fff;
+                pointer-events: none;
+            }
+        }
+    }
+
+    &__hotspot-modal-content{
+        padding: 10px;
+
+        video, img{
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+.map-container__pano-navigator{
+    right: 10px !important;
+    top: 7px !important;
+}
+
+.streetview__controls{
+    z-index: 2;
+    border-radius: 3px;
+
+    >div{
+        width: 40px;
+        padding: 4px;
+        background: none rgb(34, 34, 34);
+        box-sizing: border-box;
+    }
+
+    &--menu{
+        cursor: pointer;
+
+        img{
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+    }
+
+    &--home{
+        cursor: pointer;
+        margin-top: 4px;
+
+        img{
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+    }
+
+    &--menu-items{
+        position: absolute;
+        transform: translateX( calc( -100% - 5px ) );
+        top: 0;
+        background-color: #222222;
+        color: #666;
+        width: 150px;
+        display: none;
+
+        ul{
+            margin: 0 !important;
+            list-style: none;
+            padding: 0 !important;
+
+            li{
+                margin: 0 !important;
+                cursor: pointer;
+                padding: 10px;
+                font-size: 16px;
+
+                &:hover{
+                    color: #fff;
+                }
+            }
+        }
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+.vrpress-modal-image-container{
+    position: relative;
+
+    .vrpress-modal-image-container-caption{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(255,255,255,.6);
+        padding: 15px 20px;
+        box-sizing: border-box;
+    }
+}
+
+@import './icons.scss';

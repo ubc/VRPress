@@ -1,0 +1,36 @@
+.vrpress-hotspot{
+    background-color: #0095ff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 50%;
+    
+    &.iconType-Info{
+        background-image: url('./../image/hotspot-info.svg');
+        background-size: 9px;
+    }
+
+    &.iconType-Image, &.iconType-oEmbed-Image{
+        background-image: url('./../image/images-regular.svg');
+        background-size: 20px;
+    }
+
+    &.iconType-Video, &.iconType-oEmbed-Video{
+        background-image: url('./../image/hotspot-video.svg');
+        background-size: 20px;
+    }
+
+    &.iconType-Link{
+        background-image: url('./../image/hotspot-link.svg');
+        background-size: 22px;
+    }
+
+    &.iconType-Scene{
+        background-image: url('./../image/hotspot-direction.svg');
+        background-size: 22px;
+    }
+
+    &.iconType-oEmbed-Document{
+        background-image: url('./../image/file-pdf-regular.svg');
+        background-size: 18px;
+    }
+}

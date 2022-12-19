@@ -1,0 +1,14 @@
+{
+    "presets": ["@babel/preset-react"],
+    "env": {
+      "development": {
+        "presets": [["@babel/preset-react", { "development": true }]]
+      }
+    },
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-for-of"
+    ]
+  }
+  
