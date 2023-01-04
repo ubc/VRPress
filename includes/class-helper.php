@@ -221,7 +221,7 @@ class Helper {
 
 			case 'Info':
 				return array(
-					'content' => sanitize_text_field( $hotspot_data['content'] ),
+					'content' => wp_kses_post( $hotspot_data['content'] ),
 				);
 			case 'Scene':
 				return array(
