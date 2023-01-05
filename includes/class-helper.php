@@ -254,4 +254,23 @@ class Helper {
 		return $hotspot_data;
 	}
 
+	/**
+	 * Sanitize post data with additional allowed HTML tags.
+	 * 
+	 * @param string HTML string to be filtered.
+	 * 
+	 * @return string filtered string.
+	 */
+	public static function wp_kses_hotspot_content( $data ) {
+		global $allowedposttags;
+
+		$allowed_tags = $allowedposttags;
+		$allowed_tags['iframe'] = array(
+			'src'             => true,
+			'allowfullscreen' => true,
+		);
+		
+		return wp_kses( $data, $allowed_tags );
+	}
+
 }

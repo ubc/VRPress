@@ -709,20 +709,22 @@ class VRPress {
 
 						$hotspot['content'] = '';
 						foreach ( $hotspot[ $hotspot['realType'] ] as $key => $value ) {
-							$html .= esc_html( $key ) . ': "' . esc_html( $value ) . '",';
+							if( $key !== 'content' ) {
+								$html .= esc_html( $key ) . ': "' . esc_html( $value ) . '",';
+							}
 						}
 						if ( 'Info' === $hotspot['realType'] ) {
-							$hotspot['content'] = esc_html( $hotspot[ $hotspot['realType'] ]['content'] );
+							$hotspot['content'] = $hotspot[ $hotspot['realType'] ]['content'];
 						}
 						if ( 'Image' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['url'] ) ) {
-							$hotspot['content'] = '<div class=\"vrpress-modal-image-container\"><img src=\"' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '\" alt=\"' . esc_textarea( $hotspot[ $hotspot['realType'] ]['alt'] ) . '\" /><div class=\"vrpress-modal-image-container-caption\">' . esc_textarea( $hotspot[ $hotspot['realType'] ]['caption'] ) . '</div></div>';
+							$hotspot['content'] = '<div class="vrpress-modal-image-container"><img src="' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '" alt="' . esc_textarea( $hotspot[ $hotspot['realType'] ]['alt'] ) . '" /><div class="vrpress-modal-image-container-caption">' . esc_textarea( $hotspot[ $hotspot['realType'] ]['caption'] ) . '</div></div>';
 						}
 						if ( 'Video' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['url'] ) ) {
-							$hotspot['content'] = '<video controls><source src=\"' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '\" type=\"video/mp4\">Your browser does not support the video tag.</video>';
+							$hotspot['content'] = '<video controls><source src="' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '" type="video/mp4">Your browser does not support the video tag.</video>';
 						}
 						if ( 'oEmbed' === $hotspot['realType'] ) {
 							if ( is_numeric( $hotspot[ $hotspot['realType'] ]['width'] ) && is_numeric( $hotspot[ $hotspot['realType'] ]['height'] ) ) {
-								$hotspot['content'] = '<div class=\"pnlm-render-container__iframe-container\" style=\"padding-bottom:' . number_format( $hotspot[ $hotspot['realType'] ]['height'] / $hotspot[ $hotspot['realType'] ]['width'] * 100, 2 ) . '%;\"><iframe src=\"' . esc_url( $hotspot[ $hotspot['realType'] ]['embedUrl'] ) . '\" allowfullscreen /></div>';
+								$hotspot['content'] = '<div class="pnlm-render-container__iframe-container" style="padding-bottom:' . number_format( $hotspot[ $hotspot['realType'] ]['height'] / $hotspot[ $hotspot['realType'] ]['width'] * 100, 2 ) . '%;"><iframe src="' . esc_url( $hotspot[ $hotspot['realType'] ]['embedUrl'] ) . '" allowfullscreen /></div>';
 							}
 						}
 						if ( 'Scene' !== $hotspot['realType'] && 'Link' !== $hotspot['realType'] ) {
@@ -732,7 +734,7 @@ class VRPress {
 								$html .= 'const hotspotModal = clickHandlerArgs.target.closest( ".pnlm-container" ).querySelector( ".pnlm-container__hotspot-modal" );';
 								$html .= 'const hotspotModalHeading = hotspotModal.querySelector( ".pnlm-container__hotspot-modal-heading h2" );';
 								$html .= 'const hotspotModalContent = hotspotModal.querySelector( ".pnlm-container__hotspot-modal-content" );';
-								$html .= 'hotspotModalContent.innerHTML = "' . esc_html( $hotspot['content'] ) . '";';
+								$html .= 'hotspotModalContent.innerHTML = ' . json_encode( Helper::wp_kses_hotspot_content( $hotspot['content'] ) ) . ';';
 								$html .= 'hotspotModalHeading.innerHTML = "' . esc_html( $hotspot['text'] ) . '";';
 								$html .= 'hotspotModal.classList.add( "show" );';
 							$html .= '}';
