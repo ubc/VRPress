@@ -663,14 +663,14 @@ class VRPress {
 			$html .= '"sceneFadeDuration": 1000,';
 			$html .= '"autoLoad": true,';
 			$html .= '"compass": false,';
-			$html .= null !== $vr_settings['homeControl'] ? '"showHomeControl": true,' : '"showHomeControl": false,';
-			$html .= null !== $vr_settings['navigatorControl'] ? '"showNavigatorControl": true,' : '"showNavigatorControl": false,';
-			$html .= null !== $vr_settings['showEmbed'] ? '"showEmbed": true,' : '"showEmbed": false,';
+			$html .= array_key_exists( 'homeControl', $vr_settings ) ? '"showHomeControl": true,' : '"showHomeControl": false,';
+			$html .= array_key_exists( 'navigatorControl', $vr_settings ) ? '"showNavigatorControl": true,' : '"showNavigatorControl": false,';
+			$html .= array_key_exists( 'showEmbed', $vr_settings ) ? '"showEmbed": true,' : '"showEmbed": false,';
 			// Start Settings.
-			$html .= null !== $vr_settings['autoRotate'] ? '"autoRotate": 5,' : '';
-			$html .= null !== $vr_settings['autoRotate'] ? '"autoRotateInactivityDelay": 10000,' : '';
-			$html .= null !== $vr_settings['zoomControl'] ? '"showZoomCtrl": true,' : '"showZoomCtrl": false,';
-			$html .= null !== $vr_settings['fullScreenControl'] ? '"showFullscreenCtrl": true,' : '"showFullscreenCtrl": false,';
+			$html .= array_key_exists( 'autoRotate', $vr_settings ) ? '"autoRotate": 5,' : '';
+			$html .= array_key_exists( 'autoRotate', $vr_settings ) ? '"autoRotateInactivityDelay": 10000,' : '';
+			$html .= array_key_exists( 'zoomControl', $vr_settings ) ? '"showZoomCtrl": true,' : '"showZoomCtrl": false,';
+			$html .= array_key_exists( 'fullScreenControl', $vr_settings ) ? '"showFullscreenCtrl": true,' : '"showFullscreenCtrl": false,';
 			// End Settings.
 			$html .= '},';
 			$html .= '"scenes": {';
@@ -686,7 +686,7 @@ class VRPress {
 				}
 
 				$html .= '"' . esc_html( $scene['id'] ) . '": {';
-				$html .= null !== $vr_settings['showTitle'] ? '"title": "' . esc_html( $scene['title'] ) . '",' : '';
+				$html .= array_key_exists( 'showTitle', $vr_settings ) ? '"title": "' . esc_html( $scene['title'] ) . '",' : '';
 				$html .= '"hfov": ' . floatval( $scene['hfov'] ) . ',';
 				$html .= '"pitch": ' . floatval( $scene['pitch'] ) . ',';
 				$html .= '"yaw": ' . floatval( $scene['yaw'] ) . ',';
