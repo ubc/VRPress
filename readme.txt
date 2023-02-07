@@ -1,5 +1,5 @@
 === VRPress ===
-Contributors:      Kelvin Xu, Novak Rogic, Richard Tape
+Contributors:      Kelvin Xu
 Tested up to:      6.1.1
 Stable tag:        1.2.0
 License:           GPL-2.0-or-later
