@@ -1,5 +1,5 @@
 {
-  "name": "ubc-vrpress",
+  "name": "vrpress",
   "version": "1.0.0",
   "description": "Create 360 virtual tours using images of your own or Google Streetview images",
   "main": "index.js",

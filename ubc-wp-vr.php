@@ -6,9 +6,9 @@
  * Author:            Kelvin Xu(CTLT)
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       ubc-vrpress
+ * Text Domain:       vrpress
  *
- * @package ubc-vrpress
+ * @package vrpress
  */
 
 namespace UBC\VRPRESS;
