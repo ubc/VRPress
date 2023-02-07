@@ -3,7 +3,7 @@
  * Plugin Name:       VRPress
  * Description:       Create 360 virtual tours using images of your own or Google Streetview images.
  * Version:           1.2.0
- * Author:            Kelvin Xu, Novak Rogic, Richard Tape
+ * Author:            Kelvin Xu(CTLT)
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       vrpress
