@@ -3,7 +3,7 @@
  * UBC VRPress Block class
  *
  * @since 1.0.0
- * @package ubc-vrpress
+ * @package vrpress
  */
 
 namespace UBC;

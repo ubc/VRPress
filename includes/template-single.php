@@ -2,8 +2,7 @@
 /**
  * The template for VRPress post type single template.
  *
- * @package ubc-wpvr
- * @since 1.1.0
+ * @package vrpress
  */
 
 	wp_head();

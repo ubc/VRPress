@@ -2,7 +2,7 @@
 /**
  * Helper functions
  *
- * @package ubc_vrpress
+ * @package vrpress
  */
 
 namespace UBC\VRPRESS;

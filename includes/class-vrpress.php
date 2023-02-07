@@ -1,9 +1,9 @@
 <?php
 /**
- * UBC VRPress class instantiate core VRPress functionality
+ * VRPress class instantiate core VRPress functionality
  *
  * @since 1.0.0
- * @package ubc-vrpress
+ * @package vrpress
  */
 
 namespace UBC;
@@ -87,19 +87,19 @@ class VRPress {
 	public function add_plugin_custom_post_type() {
 
 		$labels = array(
-			'name'               => __( 'Tours', 'ubcvrpress' ),
-			'singular_name'      => __( 'Tours', 'ubcvrpress' ),
-			'add_new'            => __( 'Add New Tour', 'ubcvrpress' ),
-			'add_new_item'       => __( 'Add New Tour', 'ubcvrpress' ),
-			'edit_item'          => __( 'Edit Tour', 'ubcvrpress' ),
-			'new_item'           => __( 'New Tour', 'ubcvrpress' ),
-			'view_item'          => __( 'View Tour', 'ubcvrpress' ),
-			'search_items'       => __( 'Search Tour', 'ubcvrpress' ),
-			'not_found'          => __( 'No Tour found', 'ubcvrpress' ),
-			'not_found_in_trash' => __( 'No Tour found in Trash', 'ubcvrpress' ),
+			'name'               => __( 'Tours', 'vrpress' ),
+			'singular_name'      => __( 'Tours', 'vrpress' ),
+			'add_new'            => __( 'Add New Tour', 'vrpress' ),
+			'add_new_item'       => __( 'Add New Tour', 'vrpress' ),
+			'edit_item'          => __( 'Edit Tour', 'vrpress' ),
+			'new_item'           => __( 'New Tour', 'vrpress' ),
+			'view_item'          => __( 'View Tour', 'vrpress' ),
+			'search_items'       => __( 'Search Tour', 'vrpress' ),
+			'not_found'          => __( 'No Tour found', 'vrpress' ),
+			'not_found_in_trash' => __( 'No Tour found in Trash', 'vrpress' ),
 			'parent_item_colon'  => '',
-			'all_items'          => __( 'All Tours', 'ubcvrpress' ),
-			'menu_name'          => __( 'VRPress', 'ubcvrpress' ),
+			'all_items'          => __( 'All Tours', 'vrpress' ),
+			'menu_name'          => __( 'VRPress', 'vrpress' ),
 		);
 
 		$args = array(
@@ -147,7 +147,7 @@ class VRPress {
 			// Metabox which renders tour config and settings.
 			add_meta_box(
 				'ubc_vrpress_metabox',
-				__( 'Tour Settings', 'ubcvrpress' ),
+				__( 'Tour Settings', 'vrpress' ),
 				array( $this, 'metabox_content' ),
 				$screen
 			);
@@ -155,7 +155,7 @@ class VRPress {
 			// Metabox which renders preview frame.
 			add_meta_box(
 				'ubc_vrpress_metabox_preview',
-				__( 'Preview', 'ubcvrpress' ),
+				__( 'Preview', 'vrpress' ),
 				array( $this, 'metabox_preview' ),
 				$screen,
 				'side',
@@ -165,7 +165,7 @@ class VRPress {
 			// Metabox which presents tour settings.
 			add_meta_box(
 				'ubc_vrpress_metabox_settings',
-				__( 'Settings', 'ubcvrpress' ),
+				__( 'Settings', 'vrpress' ),
 				array( $this, 'metabox_settings' ),
 				$screen,
 				'side',
@@ -241,8 +241,8 @@ class VRPress {
 	public function metabox_shortcode( $post ) {
 		?>
 			<div class="metabox_shortcode">
-				<p><?php echo esc_textarea( __( 'To use this panorama in your content, copy the shortcode below into your post page', 'ubcvrpress' ) ); ?>. <br /><span class="text-to-copy">[vrpress id="<?php echo esc_attr( $post->ID ); ?>"]</span><br /><button class="shortcode-copy button button-secondary button-large"><?php echo esc_html( __( 'copy' ) ); ?></button></p>
-				<p><?php echo esc_textarea( __( 'If the panorama is using google streetview, you can use below shortcode to render the google map associated with it', 'ubcvrpress' ) ); ?>.<br /><span class="text-to-copy">[vrpress_map id="<?php echo esc_attr( $post->ID ); ?>"]</span><br /><button class="shortcode-copy button button-secondary button-large"><?php echo esc_html( __( 'copy' ) ); ?></button></p>
+				<p><?php echo esc_textarea( __( 'To use this panorama in your content, copy the shortcode below into your post page', 'vrpress' ) ); ?>. <br /><span class="text-to-copy">[vrpress id="<?php echo esc_attr( $post->ID ); ?>"]</span><br /><button class="shortcode-copy button button-secondary button-large"><?php echo esc_html( __( 'copy' ) ); ?></button></p>
+				<p><?php echo esc_textarea( __( 'If the panorama is using google streetview, you can use below shortcode to render the google map associated with it', 'vrpress' ) ); ?>.<br /><span class="text-to-copy">[vrpress_map id="<?php echo esc_attr( $post->ID ); ?>"]</span><br /><button class="shortcode-copy button button-secondary button-large"><?php echo esc_html( __( 'copy' ) ); ?></button></p>
 			</div>
 
 			<script>
@@ -279,7 +279,7 @@ class VRPress {
 	public function metabox_embed( $post ) {
 		?>
 			<div class="metabox_shortcode">
-				<p><?php echo esc_textarea( __( 'Get embed code for the tour', 'ubcvrpress' ) ); ?>.<br />
+				<p><?php echo esc_textarea( __( 'Get embed code for the tour', 'vrpress' ) ); ?>.<br />
 				<span>
 					<code class="text-to-copy">
 						<?php
@@ -323,14 +323,14 @@ class VRPress {
 	public function add_plugin_submenus() {
 		add_submenu_page(
 			'edit.php?post_type=' . $this->post_type,
-			__( 'Settings', 'ubcvrpress' ),
-			__( 'Settings', 'ubcvrpress' ),
+			__( 'Settings', 'vrpress' ),
+			__( 'Settings', 'vrpress' ),
 			'manage_options',
 			'ubc_vrpress_settings',
 			function() {
 				?>
 				<div class="wrap">
-					<h2><?php echo esc_textarea( __( 'VRPress Settings', 'ubcvrpress' ) ); ?></h2>
+					<h2><?php echo esc_textarea( __( 'VRPress Settings', 'vrpress' ) ); ?></h2>
 					<form action="options.php" method="post">
 						<?php
 							settings_fields( 'ubc_vrpress_options' );
@@ -345,8 +345,8 @@ class VRPress {
 
 		add_submenu_page(
 			'edit.php?post_type=' . $this->post_type,
-			__( 'Documentation', 'ubcvrpress' ),
-			__( 'Documentation', 'ubcvrpress' ),
+			__( 'Documentation', 'vrpress' ),
+			__( 'Documentation', 'vrpress' ),
 			'manage_options',
 			'ubc_vrpress_documentations',
 			'UBC\VRPRESS\Documentation\\documentation_page_content'
