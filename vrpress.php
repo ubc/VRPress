@@ -34,6 +34,10 @@ function init() {
 
 	new \UBC\VRPRESS( 'ubcvrpress' );
 	new \UBC\VRPRESSBlock( 'ubcvrpress' );
+
+	register_activation_hook( __FILE__, function() {
+		update_option( 'vrpress_permalinks_flushed', 0 );
+	} );
 }
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\init' );
