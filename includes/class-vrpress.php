@@ -105,6 +105,7 @@ class VRPress {
 		$args = array(
 			'labels'        => $labels,
 			'public'        => true,
+			'publicly_queryable' => true,
 			'show_ui'       => true,
 			'show_in_menu'  => true,
 			'menu_position' => 100,
@@ -115,6 +116,12 @@ class VRPress {
 		);
 
 		register_post_type( $this->post_type, $args );
+
+		if ( ! get_option( 'vrpress_permalinks_flushed' ) ) {
+
+			flush_rewrite_rules( false );
+			update_option( 'vrpress_permalinks_flushed', 1 );
+		}
 	}//end add_plugin_custom_post_type()
 
 	/**
@@ -485,13 +492,15 @@ class VRPress {
 
 			// Enqueue google map javascript API library.
 			// phpcs:ignore
-			wp_enqueue_script(
-				'ubc_vrpress_google_map_script',
-				'https://maps.googleapis.com/maps/api/js?key=' . get_option( 'ubc_vrpress' )['google_map_api_key'] . '&libraries=places',
-				array(),
-				null,
-				true
-			);
+			if ( false !== get_option( 'ubc_vrpress' ) ) {
+				wp_enqueue_script(
+					'ubc_vrpress_google_map_script',
+					'https://maps.googleapis.com/maps/api/js?key=' . get_option( 'ubc_vrpress' )['google_map_api_key'] . '&libraries=places',
+					array(),
+					null,
+					true
+				);
+			}
 
 			wp_enqueue_script(
 				'ubc_vrpress_panomarker',
