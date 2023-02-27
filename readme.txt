@@ -8,4 +8,4 @@ License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-This plugin allows users to create virtual tours using self-uploaded panorama images or existing images from Google.
+This plugin allows users to create virtual tours using self-uploaded panorama images or using existing images from Google.
