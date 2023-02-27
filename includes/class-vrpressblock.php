@@ -91,6 +91,7 @@ class VRPressBlock {
 		register_block_type(
 			'ubc/vrpress',
 			array(
+				'title'           => __( 'VRPress', 'vrpress' ),
 				'style'           => 'ubc-vrpress-block-style',
 				'editor_style'    => 'ubc-vrpress-block-editor-style',
 				'editor_script'   => 'ubc-vrpress-block-editor-script',
@@ -119,6 +120,7 @@ class VRPressBlock {
 		register_block_type(
 			'ubc/vrpress-map',
 			array(
+				'title'           => __( 'VRPress Google Map', 'vrpress' ),
 				'render_callback' => array( $this, 'render_map_block' ),
 				'attributes'      => array(
 					'postID' => array(
