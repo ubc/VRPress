@@ -1,7 +1,7 @@
 === VRPress ===
 Contributors:      Kelvin Xu, Novak Rogic, Richard Tape
 Tested up to:      6.1.1
-Stable tag:        1.2.0
+Stable tag:        1.2.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
