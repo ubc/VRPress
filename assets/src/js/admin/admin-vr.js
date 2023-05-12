@@ -197,6 +197,11 @@ export default () => {
 			}
 			if ( 'Scene' === hotspot.createTooltipArgs.type ) {
 				hotspot.div.classList.add( 'type-Scene', 'iconType-Scene' );
+
+				const hotspotArgs = hotspot.clickHandlerArgs.hotspot[hotspot.clickHandlerArgs.hotspot.realType];
+				if ( hotspotArgs.iconDirection ) {
+					hotspot.div.classList.add( `rotate-${hotspotArgs.iconDirection}` );
+				}
 			}
 			if ( 'Image' === hotspot.createTooltipArgs.type ) {
 				hotspot.div.classList.add( 'type-Image', 'iconType-Image' );
