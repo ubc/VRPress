@@ -3,3 +3,17 @@
         display: none;
     }
 }
+
+.icon-direction-settings{
+    display: flex;
+    flex-wrap: wrap;
+
+    &__single{
+        margin-right: 10px;
+        .vrpress-hotspot.iconType-Scene {
+            width: 30px !important;
+            height: 30px !important;
+            background-size: 15px !important;
+        }
+    }
+}

@@ -742,7 +742,7 @@ class VRPress {
 								$html .= 'clickHandlerArgs.target.closest( ".pnlm-container" ).classList.add("modal-opened");';
 								$html .= 'const hotspotModal = clickHandlerArgs.target.closest( ".pnlm-container" ).querySelector( ".pnlm-container__hotspot-modal" );';
 								$html .= 'const hotspotModalHeading = hotspotModal.querySelector( ".pnlm-container__hotspot-modal-heading h2" );';
-								$html .= 'const hotspotModalContent = hotspotModal.querySelector( ".pnlm-container__hotspot-modal-content" );';
+								$html .= 'const hotspotModalContent = hotspotModal.querySelector( ".pnlm-container__hotspot-modal-content-inner" );';
 								$html .= 'hotspotModalContent.innerHTML = ' . json_encode( Helper::wp_kses_hotspot_content( $hotspot['content'] ) ) . ';';
 								$html .= 'hotspotModalHeading.innerHTML = "' . esc_html( $hotspot['text'] ) . '";';
 								$html .= 'hotspotModal.classList.add( "show" );';

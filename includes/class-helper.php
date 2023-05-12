@@ -221,6 +221,7 @@ class Helper {
 			case 'Scene':
 				return array(
 					'sceneId' => intval( $hotspot_data['sceneId'] ),
+					'iconDirection' => esc_attr( $hotspot_data['iconDirection'] ),
 				);
 			case 'Link':
 				return array(

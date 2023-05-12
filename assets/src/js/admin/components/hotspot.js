@@ -32,6 +32,7 @@ export default ( props ) => {
     };
 
     const iconTypes = [ 'Image', 'Video', 'Document' ];
+    const iconPanoDirection = [ '0', '45deg', '90deg', '135deg', '180deg', '225deg', '270deg', '315deg' ];
 
     return (
         <Fragment>
@@ -204,28 +205,59 @@ export default ( props ) => {
 
 
                     { 'Scene' === hotspot.realType ? (
-                        <tr>
-                            <th>Link to Pano</th>
-                            <td>
-                                <Fragment>
-                                    <select
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].sceneId ? hotspot[ hotspot.realType ].sceneId : '' }
-                                        name={ `${ name }[${ hotspot.realType }][sceneId]` }
-                                        className='large-text'
-                                        onChange={ ( e ) => {
-                                            e.preventDefault();
-                                            setHotspotByType( hotspot.realType )( 'sceneId', e.target.value );
-                                        } }
-                                    >
-                                        <option value="">Select a pano to link to</option>
-                                        { scenes.map( ( scene, index ) => {
-                                            return currentScene !== scene ? <option value={ scene.id } key={ index } >{ scene.title }</option> : '';
-                                        }) }
-                                    </select>
-                                    <p className="description">Navigate to another pano on click event.</p>
-                                </Fragment>
-                            </td>
-                        </tr>
+                        <Fragment>
+                            <tr>
+                                <th>Icon Direction</th>
+                                <td className='icon-direction-settings'>
+                                    { iconPanoDirection.map( ( direction, key ) => {
+                                        return (
+                                            <div
+                                                className="icon-direction-settings__single"
+                                                key={ key }
+                                            >
+                                                <div
+                                                    className='vrpress-hotspot iconType-Scene'
+                                                    style={ { transform: `rotate(${direction})` } }
+                                                >
+                                                    <div className="hotspot"><div className="in"></div><div className="out"></div></div>
+                                                </div>
+                                                <input
+                                                    type="radio"
+                                                    name={ `${ name }[${ hotspot.realType }][iconDirection]` }
+                                                    checked={ ( hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].iconDirection ) ? direction === hotspot[ hotspot.realType ].iconDirection : 0 === key }
+                                                    value={ direction }
+                                                    onChange={e => {
+                                                        setHotspotByType( hotspot.realType )( 'iconDirection', direction );
+                                                    }}
+                                                ></input>
+                                            </div>
+                                        );
+                                    }) }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Link to Pano</th>
+                                <td>
+                                    <Fragment>
+                                        <select
+                                            value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].sceneId ? hotspot[ hotspot.realType ].sceneId : '' }
+                                            name={ `${ name }[${ hotspot.realType }][sceneId]` }
+                                            className='large-text'
+                                            onChange={ ( e ) => {
+                                                e.preventDefault();
+                                                setHotspotByType( hotspot.realType )( 'sceneId', e.target.value );
+                                            } }
+                                        >
+                                            <option value="">Select a pano to link to</option>
+                                            { scenes.map( ( scene, index ) => {
+                                                return currentScene !== scene ? <option value={ scene.id } key={ index } >{ scene.title }</option> : '';
+                                            }) }
+                                        </select>   
+                                        <p className="description">Navigate to another pano on click event.</p>
+                                    </Fragment>
+                                </td>
+                            </tr>
+                        </Fragment>
                     ) : null }
 
                     { 'Video' === hotspot.realType ? (

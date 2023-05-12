@@ -145,7 +145,7 @@ body{
 
         h2{
             padding: 10px !important;
-            font-size: 16px !important;
+            font-size: var( --vrpress-modal-heading-font-size, 1rem ) !important;
             color: #fff;
             margin-top:0;
             margin-bottom: 0;
@@ -173,6 +173,15 @@ body{
 
     .pnlm-container__hotspot-modal-content{
         padding: 10px;
+        font-size: var( --vrpress-modal-content-font-size, inherit ) !important;
+        line-height: var( --vrpress-modal-content-line-height, inherit ) !important;
+        max-height: 60vh;
+        overflow-y: scroll;
+
+        &-inner{
+            height: 100%;
+            overflow-y: scroll;
+        }
     }
 
     video, img{
@@ -198,8 +207,8 @@ body{
 }
 
 .pnlm-hotspot-base{
-    width: 40px !important;
-    height: 40px !important;
+    width: var( --vrpress-hotspot-icon-size, 40px ) !important;
+    height: var( --vrpress-hotspot-icon-size, 40px ) !important;
     background-color: #0095ff !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;

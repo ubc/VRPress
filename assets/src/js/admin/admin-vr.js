@@ -128,7 +128,7 @@ export default () => {
 		document.querySelector( '.pnlm-container' ).classList.add( 'modal-opened' );
 		const hotspotModal = document.querySelector( '.pnlm-container__hotspot-modal' );
 		const hotspotModalHeading = hotspotModal.querySelector( '.pnlm-container__hotspot-modal-heading h2' );
-		const hotspotModalContent = hotspotModal.querySelector( '.pnlm-container__hotspot-modal-content' );
+		const hotspotModalContent = hotspotModal.querySelector( '.pnlm-container__hotspot-modal-content-inner' );
 
 		if ( 'Info' === hotspot.realType ) {
 			hotspot.content = hotspot.Info && hotspot.Info.content ? hotspot.Info.content : '';
