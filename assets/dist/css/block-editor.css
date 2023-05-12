@@ -1,13 +1,1 @@
-.ubc-vrpress-default-view {
-  width: 100%;
-  max-height: 400px;
-  background-color: #e7e7e7;
-}
-.ubc-vrpress-default-view > div {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/*# sourceMappingURL=block-editor.css.map*/
+.ubc-vrpress-default-view{width:100%;max-height:400px;background-color:#e7e7e7}.ubc-vrpress-default-view>div{padding:20px;display:flex;align-items:center;justify-content:center}
