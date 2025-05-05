@@ -1,8 +1,8 @@
+@use './streetview-extend.scss';
+
 body .streetview-container{
     width: 100% !important;
     max-width: 600px;
     height: 400px;
     margin: 0;
 }
-
-@import './streetview-extend.scss';

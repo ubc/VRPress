@@ -1,7 +1,7 @@
-@import './pannellum-extend.scss';
-@import './streetview-extend.scss';
-@import './tabs.scss';
-@import './tour-backend-vr.scss';
+@use './pannellum-extend.scss';
+@use './streetview-extend.scss';
+@use './tabs.scss';
+@use './tour-backend-vr.scss';
 
 #ubcvrpress_metabox_shortcode .inside{
   padding-top: 20px;
