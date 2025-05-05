@@ -27,6 +27,11 @@
         background-size: 20px;
     }
 
+    &.iconType-Audio::before{
+        background-image: url('./../image/hotspot-audio.svg');
+        background-size: 20px;
+    }
+
     &.iconType-Link::before{
         background-image: url('./../image/hotspot-link.svg');
         background-size: 22px;

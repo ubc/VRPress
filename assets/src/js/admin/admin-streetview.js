@@ -206,6 +206,10 @@ class StreetView extends Component {
       tempMarker[ tempMarker.type ].content = `<img src="${ tempMarker.Image.url }" alt="feature image on hotspot click" />`;
     }
 
+    if ( 'Audio' === tempMarker.type ) {
+      tempMarker[ tempMarker.type ].content = `<audio controls><source src="${ tempMarker.Audio.url }" type="audio/mp3">Your browser does not support the audio tag.</audio>`;
+    }
+
     if ( 'Video' === tempMarker.type ) {
       tempMarker[ tempMarker.type ].content = `<video controls><source src="${ tempMarker.Video.url }" type="video/mp4">Your browser does not support the video tag.</video>`;
     }
@@ -282,6 +286,10 @@ class StreetView extends Component {
 
           if ( 'Image' === hotspot.type ) {
             hotspot[ hotspot.type ].content = `<div class="vrpress-modal-image-container"><img src="${ hotspot.Image.url }" alt="${ hotspot.Image.alt }" /><div class="vrpress-modal-image-container-caption">${ hotspot.Image.caption}</div>`;
+          }
+
+          if ( 'Audio' === hotspot.type ) {
+            hotspot[ hotspot.type ].content = `<audio controls><source src="${ hotspot.Audio.url }" type="audio/mp3">Your browser does not support the audio tag.</audio>`;
           }
 
           if ( 'Video' === hotspot.type ) {
@@ -590,6 +598,9 @@ class StreetView extends Component {
         break;
       case 'Video':
         icon = 'vrpress-hotspot iconType-Video';
+        break;
+      case 'Audio':
+        icon = 'vrpress-hotspot iconType-Audio';
         break;
       case 'Image':
         icon = 'vrpress-hotspot iconType-Image';

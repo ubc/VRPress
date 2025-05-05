@@ -11,7 +11,7 @@ import AppContext from './../context.js';
 
 export default ( props ) => {
 
-    let hotSpotTypes = [ 'Info', 'Link', 'Scene', 'Image', 'Video', 'oEmbed' ];
+    let hotSpotTypes = [ 'Info', 'Link', 'Scene', 'Image', 'Audio', 'Video', 'oEmbed' ];
     const appContext = useContext( AppContext );
     const { selectedHotSpotIndex, setSelectedHotSpotIndex, shouldSceneChangeUpdatePov, saveCurrentPov, currentPOV } = appContext;
 

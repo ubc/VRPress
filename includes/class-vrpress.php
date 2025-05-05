@@ -731,6 +731,9 @@ class VRPress {
 						if ( 'Video' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['url'] ) ) {
 							$hotspot['content'] = '<video controls><source src="' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '" type="video/mp4">Your browser does not support the video tag.</video>';
 						}
+						if ( 'Audio' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['url'] ) ) {
+							$hotspot['content'] = '<audio controls><source src="' . esc_url( $hotspot[ $hotspot['realType'] ]['url'] ) . '" type="audio/mp3">Your browser does not support the audio tag.</audio>';
+						}
 						if ( 'oEmbed' === $hotspot['realType'] ) {
 							if ( is_numeric( $hotspot[ $hotspot['realType'] ]['width'] ) && is_numeric( $hotspot[ $hotspot['realType'] ]['height'] ) ) {
 								$hotspot['content'] = '<div class="pnlm-render-container__iframe-container" style="padding-bottom:' . number_format( $hotspot[ $hotspot['realType'] ]['height'] / $hotspot[ $hotspot['realType'] ]['width'] * 100, 2 ) . '%;"><iframe src="' . esc_url( $hotspot[ $hotspot['realType'] ]['embedUrl'] ) . '" allowfullscreen /></div>';

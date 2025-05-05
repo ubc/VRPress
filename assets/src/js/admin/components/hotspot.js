@@ -260,9 +260,9 @@ export default ( props ) => {
                         </Fragment>
                     ) : null }
 
-                    { 'Video' === hotspot.realType ? (
+                    { 'Video' === hotspot.realType || 'Audio' === hotspot.realType ? (
                         <tr>
-                            <th>Video Url</th>
+                            <th>Media Url</th>
                             <td>
                                 <Fragment>
                                     { hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? (
@@ -284,7 +284,7 @@ export default ( props ) => {
                                             setHotspotByType( hotspot.realType )( 'url', '' );
                                         } }
                                     />
-                                    <p className="description">Show video content in modal.</p>
+                                    <p className="description">Show media content in modal.</p>
                                 </Fragment>
                             </td>
                         </tr>

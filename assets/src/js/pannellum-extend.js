@@ -30,6 +30,9 @@
                 if ( 'Image' === hotspot.realType ) {
                     hotspot.div.classList.add( 'type-Image', 'iconType-Image' );
                 }
+                if ( 'Audio' === hotspot.realType ) {
+                    hotspot.div.classList.add( 'type-Video', 'iconType-Audio' );
+                }
                 if ( 'Video' === hotspot.realType ) {
                     hotspot.div.classList.add( 'type-Video', 'iconType-Video' );
                 }

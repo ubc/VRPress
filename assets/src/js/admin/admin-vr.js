@@ -142,6 +142,10 @@ export default () => {
 			hotspot.content = '<p>Pano navigation will not be functional in the preview.</p>';
 		}
 
+		if ( 'Audio' === hotspot.realType && hotspot.Audio.url ) {
+			hotspot.content = `<audio controls><source src="${ hotspot.Audio.url }" type="audio/mp3">Your browser does not support the audio tag.</audio>`;
+		}
+
 		if ( 'Video' === hotspot.realType && hotspot.Video.url ) {
 			hotspot.content = `<video controls><source src="${ hotspot.Video.url }" type="video/mp4">Your browser does not support the video tag.</video>`;
 		}
@@ -191,6 +195,9 @@ export default () => {
 			}
 			if ( 'Video' === hotspot.createTooltipArgs.type ) {
 				hotspot.div.classList.add( 'type-Video', 'iconType-Video' );
+			}
+			if ( 'Audio' === hotspot.createTooltipArgs.type ) {
+				hotspot.div.classList.add( 'type-Audio', 'iconType-Audio' );
 			}
 			if ( 'oEmbed' === hotspot.createTooltipArgs.type ) {
 				hotspot.div.classList.add( 'type-oEmbed', `iconType-oEmbed-${ hotspot.createTooltipArgs.icon }` );

@@ -9,7 +9,7 @@ import GoogleHotspot from './google-hotspot';
 
 export default ( props ) => {
 
-   let hotspotTypes = [ 'Info', 'Link', 'Image', 'Video', 'oEmbed' ];
+   let hotspotTypes = [ 'Info', 'Link', 'Image', 'Audio', 'Video', 'oEmbed' ];
 
    const generateDefaultProps = () => {
 		return {

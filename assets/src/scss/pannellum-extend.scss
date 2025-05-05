@@ -174,7 +174,7 @@ body{
     }
 
     .pnlm-container__hotspot-modal-content{
-        padding: 10px;
+        padding: 20px;
         font-size: var( --vrpress-modal-content-font-size, inherit ) !important;
         line-height: var( --vrpress-modal-content-line-height, inherit ) !important;
         max-height: 60vh;
@@ -182,7 +182,6 @@ body{
 
         &-inner{
             height: 100%;
-            overflow-y: scroll;
         }
     }
 

@@ -23,6 +23,9 @@ import './../scss/streetview-extend.scss';
               case 'Video':
                 icon = 'vrpress-hotspot iconType-Video';
                 break;
+              case 'Audio':
+                icon = 'vrpress-hotspot iconType-Audio';
+                break;
               case 'Image':
                 icon = 'vrpress-hotspot iconType-Image';
                 break;
@@ -110,6 +113,10 @@ import './../scss/streetview-extend.scss';
 
                         if ( 'Image' === hotspot.type ) {
                             hotspot[ hotspot.type ].content = `<div class="vrpress-modal-image-container"><img src="${ hotspot.Image.url }" alt="${ hotspot.Image.alt }" /><div class="vrpress-modal-image-container-caption">${ hotspot.Image.caption}</div>`;
+                        }
+
+                        if ( 'Audio' === hotspot.type ) {
+                            hotspot[ hotspot.type ].content = `<audio controls><source src="${ hotspot.Audio.url }" type="audio/mp3">Your browser does not support the audio tag.</audio>`;
                         }
 
                         if ( 'Video' === hotspot.type ) {

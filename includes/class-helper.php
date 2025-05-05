@@ -47,9 +47,9 @@ class Helper {
 
 	/**
 	 * Check if a remote file URL exist.
-	 * 
+	 *
 	 * @param string $url URL of the remote file.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public static function checkRemoteFile( $url ) {
@@ -57,7 +57,7 @@ class Helper {
 			wp_remote_get(
 				$url,
 				array(
-					'limit_response_size' => 1
+					'limit_response_size' => 1,
 				)
 			)
 		);
@@ -73,7 +73,7 @@ class Helper {
 	 */
 	public static function sanitize_vr_settings( $vr_settings ) {
 		return array_map(
-			function( $setting ) {
+			function ( $setting ) {
 				return rest_sanitize_boolean( $setting );
 			},
 			$vr_settings
@@ -97,7 +97,7 @@ class Helper {
 		// Sanitize all the markers data.
 		if ( isset( $streetview_data['markers'] ) && is_array( $streetview_data['markers'] ) && ! empty( $streetview_data['markers'] ) ) {
 			$new_streetview_data['markers'] = array_map(
-				function( $marker ) {
+				function ( $marker ) {
 					$new_marker                = array();
 					$new_marker['id']          = isset( $marker['id'] ) ? intval( $marker['id'] ) : -1;
 					$new_marker['pano']        = isset( $marker['pano'] ) ? sanitize_text_field( $marker['pano'] ) : '';
@@ -123,7 +123,7 @@ class Helper {
 		// Sanitize all the hotspots data.
 		if ( isset( $streetview_data['hotSpots'] ) && is_array( $streetview_data['hotSpots'] ) && ! empty( $streetview_data['hotSpots'] ) ) {
 			$new_streetview_data['hotSpots'] = array_map(
-				function( $hotspot ) {
+				function ( $hotspot ) {
 					$new_hotspot                     = array();
 					$new_hotspot['id']               = intval( $hotspot['id'] );
 					$new_hotspot['pano']             = sanitize_text_field( $hotspot['pano'] );
@@ -163,7 +163,7 @@ class Helper {
 		// Sanitize all the scene data.
 		if ( isset( $vr_data['scenes'] ) && is_array( $vr_data['scenes'] ) && ! empty( $vr_data['scenes'] ) ) {
 			$new_vr_data['scenes'] = array_map(
-				function( $scene ) {
+				function ( $scene ) {
 					$new_scene             = array();
 					$new_scene['id']       = isset( $scene['id'] ) ? intval( $scene['id'] ) : -1;
 					$new_scene['position'] = isset( $scene['position'] ) ? intval( $scene['position'] ) : 0;
@@ -176,7 +176,7 @@ class Helper {
 					// Sanitize all the hotspots data.
 					if ( isset( $scene['hotSpots'] ) && is_array( $scene['hotSpots'] ) && ! empty( $scene['hotSpots'] ) ) {
 						$new_scene['hotSpots'] = array_map(
-							function( $hotspot ) {
+							function ( $hotspot ) {
 								$new_hotspot                         = array();
 								$new_hotspot['id']                   = intval( $hotspot['id'] );
 								$new_hotspot['pitch']                = floatval( $hotspot['pitch'] );
@@ -220,7 +220,7 @@ class Helper {
 				);
 			case 'Scene':
 				return array(
-					'sceneId' => intval( $hotspot_data['sceneId'] ),
+					'sceneId'       => intval( $hotspot_data['sceneId'] ),
 					'iconDirection' => esc_attr( $hotspot_data['iconDirection'] ),
 				);
 			case 'Link':
@@ -252,21 +252,29 @@ class Helper {
 
 	/**
 	 * Sanitize post data with additional allowed HTML tags.
-	 * 
+	 *
 	 * @param string HTML string to be filtered.
-	 * 
+	 *
 	 * @return string filtered string.
 	 */
 	public static function wp_kses_hotspot_content( $data ) {
 		global $allowedposttags;
 
-		$allowed_tags = $allowedposttags;
+		$allowed_tags           = $allowedposttags;
 		$allowed_tags['iframe'] = array(
 			'src'             => true,
 			'allowfullscreen' => true,
 		);
-		
+
+		$allowed_tags['audio'] = array(
+			'controls' => true,
+		);
+
+		$allowed_tags['source'] = array(
+			'src'  => true,
+			'type' => true,
+		);
+
 		return wp_kses( $data, $allowed_tags );
 	}
-
 }

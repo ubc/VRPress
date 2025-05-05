@@ -201,7 +201,7 @@ export default ( props ) => {
                     </Fragment>
                 ) : '' }
 
-                { 'Video' === hotspot.type ? (
+                { 'Video' === hotspot.type || 'Audio' === hotspot.type ? (
                     <tr>
                         <th>Video Url</th>
                         <td>
