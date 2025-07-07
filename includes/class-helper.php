@@ -226,6 +226,7 @@ class Helper {
 			case 'Link':
 				return array(
 					'URL' => esc_url_raw( $hotspot_data['URL'] ),
+					'newTab' => isset( $hotspot_data['newTab'] ) ? sanitize_text_field( $hotspot_data['newTab'] ) : 'false',
 				);
 			case 'Image':
 				return array(

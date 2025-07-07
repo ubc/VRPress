@@ -717,17 +717,22 @@ class VRPress {
 							$html .= 'iconType: "' . esc_html( $hotspot['iconType'] ) . '",';
 						}
 
+
+						if ( 'Link' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['newTab'] ) && 'yes' === $hotspot[ $hotspot['realType'] ]['newTab'] ) {
+							$html .= 'attributes: {';
+							$html .= 'target: "_blank",';
+							$html .= '},';
+						} else {
+							$html .= 'attributes: {';
+							$html .= 'target: "_self",';
+							$html .= '},';
+						}
+
 						$hotspot['content'] = '';
 						foreach ( $hotspot[ $hotspot['realType'] ] as $key => $value ) {
 							if ( $key !== 'content' ) {
 								$html .= esc_html( $key ) . ': "' . esc_html( $value ) . '",';
 							}
-						}
-
-						if ( 'Link' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['newTab'] ) && $hotspot[ $hotspot['realType'] ]['newTab'] ) {
-							$hotspot['attribute']['target'] = '_blank';
-						} else {
-							$hotspot['attribute']['target'] = '_self';
 						}
 
 						if ( 'Info' === $hotspot['realType'] ) {
@@ -774,7 +779,7 @@ class VRPress {
 		} else {
 			return 'Post is not valid';
 		}
-
+		error_log( print_r( $html, true ) );
 		return $html;
 	}//end render_shortcode_vr()
 

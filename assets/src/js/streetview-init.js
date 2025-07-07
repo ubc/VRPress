@@ -128,7 +128,11 @@ import './../scss/streetview-extend.scss';
                         }
 
                         if ( 'Link' === hotspot.type ) {
-                            window.open( hotspot.Link.URL );
+                            if ( 'yes' === hotspot[ hotspot.type ].newTab ) {
+                                window.open( hotspot.Link.URL );
+                            } else {
+                                window.location.href = hotspot.Link.URL;
+                            }
                         } else {
                             const modalElement = element.querySelector( '.map-container__hotspot-modal' );
                             const headingElement = modalElement.querySelector( '.map-container__hotspot-modal-heading h2' );

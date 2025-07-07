@@ -3,21 +3,21 @@ import AppContext from './../context.js';
 
 import MediaUpload from './media-upload';
 
-export default ( props ) => {
+export default (props) => {
     const { hotspot, setHotspot, name, currentScene, hotSpotTypes } = props;
-    const appContext = useContext( AppContext );
+    const appContext = useContext(AppContext);
     const { scenes } = appContext;
 
-    const setHotspotByType = ( type ) => {
-        const temp = hotspot[ type ] ? hotspot[ type ] : {};
-        return ( property, value ) => {
-            temp[ property ] = value;
-            setHotspot( type, temp );
+    const setHotspotByType = (type) => {
+        const temp = hotspot[type] ? hotspot[type] : {};
+        return (property, value) => {
+            temp[property] = value;
+            setHotspot(type, temp);
         };
     };
 
-    const getoEmbed = ( url ) => {
-        if ( ! url ) {
+    const getoEmbed = (url) => {
+        if (!url) {
             return;
         }
 
@@ -28,31 +28,32 @@ export default ( props ) => {
             url: url
         };
 
-        return jQuery.post( ajaxurl, data );
+        return jQuery.post(ajaxurl, data);
     };
+    console.log(hotspot);
 
-    const iconTypes = [ 'Image', 'Video', 'Document' ];
-    const iconPanoDirection = [ '0', '45deg', '90deg', '135deg', '180deg', '225deg', '270deg', '315deg' ];
+    const iconTypes = ['Image', 'Video', 'Document'];
+    const iconPanoDirection = ['0', '45deg', '90deg', '135deg', '180deg', '225deg', '270deg', '315deg'];
 
     return (
         <Fragment>
             <input
                 type="hidden"
-                value={ hotspot.id }
-                name = { `${ name }[id]` }
-                onChange={ () => { return; } }
+                value={hotspot.id}
+                name={`${name}[id]`}
+                onChange={() => { return; }}
             />
             <input
                 type="hidden"
-                value={ hotspot.pitch }
-                name={ `${ name }[pitch]` }
-                onChange={ () => { return; } }
+                value={hotspot.pitch}
+                name={`${name}[pitch]`}
+                onChange={() => { return; }}
             />
             <input
                 type="hidden"
-                value={ hotspot.yaw }
-                name={ `${ name }[yaw]` }
-                onChange={ () => { return; } }
+                value={hotspot.yaw}
+                name={`${name}[yaw]`}
+                onChange={() => { return; }}
             />
 
             <table className="form-table" role="presentation">
@@ -62,14 +63,14 @@ export default ( props ) => {
                         <th>Hotspot Title</th>
                         <td>
                             <input
-                                value={ hotspot.text }
-                                name={ `${ name }[text]` }
+                                value={hotspot.text}
+                                name={`${name}[text]`}
                                 type="text"
                                 className='large-text'
-                                onChange={ ( e ) => {
+                                onChange={(e) => {
                                     e.preventDefault();
-                                    setHotspot( 'text', e.target.value );
-                                } }
+                                    setHotspot('text', e.target.value);
+                                }}
                             />
                             <p className="description">Title of the hotspot, will show inside the modal on click.</p>
                         </td>
@@ -79,88 +80,106 @@ export default ( props ) => {
                         <th>Hotspot Type</th>
                         <td>
                             <select
-                                value={ hotspot.realType }
+                                value={hotspot.realType}
                                 className='large-text'
-                                name={ `${ name }[realType]` }
-                                onChange={ ( e ) => {
+                                name={`${name}[realType]`}
+                                onChange={(e) => {
                                     e.preventDefault();
-                                    setHotspot( 'realType', e.target.value );
-                                } }
+                                    setHotspot('realType', e.target.value);
+                                }}
                             >
-                                { hotSpotTypes.map( ( type, index ) => {
+                                {hotSpotTypes.map((type, index) => {
                                     let label = 'oEmbed' === type ? 'Embeds' : type;
                                     label = 'Scene' === type ? 'Pano' : label;
-                                    return <option value={ type } key={ index } >{ label }</option>;
-                                }) }
+                                    return <option value={type} key={index} >{label}</option>;
+                                })}
                             </select>
                             <p className="description">Type of the hotspot</p>
                         </td>
                     </tr>
 
-                    { 'Info' === hotspot.realType ? (
+                    {'Info' === hotspot.realType ? (
                         <tr>
                             <th>Content</th>
                             <td>
                                 <textarea
-                                    value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].content ? hotspot[ hotspot.realType ].content : '' }
-                                    name={ `${ name }[${ hotspot.realType }][content]` }
+                                    value={hotspot[hotspot.realType] && hotspot[hotspot.realType].content ? hotspot[hotspot.realType].content : ''}
+                                    name={`${name}[${hotspot.realType}][content]`}
                                     rows="10"
                                     className='large-text'
-                                    onChange={ ( e ) => {
+                                    onChange={(e) => {
                                         e.preventDefault();
-                                        setHotspotByType( hotspot.realType )( 'content', e.target.value );
-                                    } }
+                                        setHotspotByType(hotspot.realType)('content', e.target.value);
+                                    }}
                                 >
                                 </textarea>
                                 <p className="description">Content to be displayed in the modal. Valid html is acceptable.</p>
                             </td>
                         </tr>
-                    ) : null }
+                    ) : null}
 
-                    { 'Link' === hotspot.realType ? (
-                        <tr>
-                            <th>Link to</th>
-                            <td>
-                                <input
-                                    type="url"
-                                    value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].URL ? hotspot[ hotspot.realType ].URL : '' }
-                                    name={ `${ name }[${ hotspot.realType }][URL]` }
-                                    className='large-text'
-                                    onChange={ ( e ) => {
-                                        e.preventDefault();
-                                        setHotspotByType( hotspot.realType )( 'URL', e.target.value );
-                                    } }
-                                >
-                                </input>
-                                <p className="description">Url to be redirected to on hotspot click.</p>
-                            </td>
-                        </tr>
-                    ) : null }
+                    {'Link' === hotspot.realType ? (
+                        <>
+                            <tr>
+                                <th>Link to</th>
+                                <td>
+                                    <input
+                                        type="url"
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].URL ? hotspot[hotspot.realType].URL : ''}
+                                        name={`${name}[${hotspot.realType}][URL]`}
+                                        className='large-text'
+                                        onChange={(e) => {
+                                            e.preventDefault();
+                                            setHotspotByType(hotspot.realType)('URL', e.target.value);
+                                        }}
+                                    >
+                                    </input>
+                                    <p className="description">Url to be redirected to on hotspot click.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Open in new tab</th>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={hotspot[hotspot.realType] && 'yes' === hotspot[hotspot.realType].newTab}
+                                        name={`${name}[${hotspot.realType}][newTab]`}
+                                        value="yes"
+                                        onChange={(e) => {
+                                            setHotspotByType(hotspot.realType)('newTab', 'yes' === hotspot[hotspot.realType].newTab ? 'no' : 'yes');
+                                        }}
+                                    >
+                                    </input>
+                                    <p className="description">Open link in new tab.</p>
+                                </td>
+                            </tr>
+                        </>
+                    ) : null}
 
-                    { 'Image' === hotspot.realType ? (
+                    {'Image' === hotspot.realType ? (
                         <Fragment>
                             <tr>
                                 <th>Image Url</th>
                                 <td>
                                     <Fragment>
-                                        { hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? (
+                                        {hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? (
                                             <input
                                                 realtype="text"
                                                 className='large-text disabled'
-                                                name={ `${ name }[${ hotspot.realType }][url]` }
-                                                value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? hotspot[ hotspot.realType ].url : '' }
-                                                onChange={ () => { return; } }
+                                                name={`${name}[${hotspot.realType}][url]`}
+                                                value={hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? hotspot[hotspot.realType].url : ''}
+                                                onChange={() => { return; }}
                                             />
-                                        ) : '' }
+                                        ) : ''}
                                         <MediaUpload
-                                            name={ `${ name }[${ hotspot.realType }][url]` }
-                                            url={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? hotspot[ hotspot.realType ].url : '' }
-                                            setCallBack={ ( attachment ) => {
-                                                setHotspotByType( hotspot.realType )( 'url', attachment.url );
-                                            } }
-                                            clearCallBack={ () => {
-                                                setHotspotByType( hotspot.realType )( 'url', '' );
-                                            } }
+                                            name={`${name}[${hotspot.realType}][url]`}
+                                            url={hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? hotspot[hotspot.realType].url : ''}
+                                            setCallBack={(attachment) => {
+                                                setHotspotByType(hotspot.realType)('url', attachment.url);
+                                            }}
+                                            clearCallBack={() => {
+                                                setHotspotByType(hotspot.realType)('url', '');
+                                            }}
                                         />
                                         <p className="description">Show image content in modal.</p>
                                     </Fragment>
@@ -171,13 +190,13 @@ export default ( props ) => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].caption ? hotspot[ hotspot.realType ].caption : '' }
-                                        name={ `${ name }[${ hotspot.realType }][caption]` }
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].caption ? hotspot[hotspot.realType].caption : ''}
+                                        name={`${name}[${hotspot.realType}][caption]`}
                                         className='large-text'
-                                        onChange={ ( e ) => {
+                                        onChange={(e) => {
                                             e.preventDefault();
-                                            setHotspotByType( hotspot.realType )( 'caption', e.target.value );
-                                        } }
+                                            setHotspotByType(hotspot.realType)('caption', e.target.value);
+                                        }}
                                     >
                                     </input>
                                     <p className="description">Image caption.</p>
@@ -188,51 +207,51 @@ export default ( props ) => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].alt ? hotspot[ hotspot.realType ].alt : '' }
-                                        name={ `${ name }[${ hotspot.realType }][alt]` }
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].alt ? hotspot[hotspot.realType].alt : ''}
+                                        name={`${name}[${hotspot.realType}][alt]`}
                                         className='large-text'
-                                        onChange={ ( e ) => {
+                                        onChange={(e) => {
                                             e.preventDefault();
-                                            setHotspotByType( hotspot.realType )( 'alt', e.target.value );
-                                        } }
+                                            setHotspotByType(hotspot.realType)('alt', e.target.value);
+                                        }}
                                     >
                                     </input>
                                     <p className="description">Image alt text to show when image fail to load.</p>
                                 </td>
                             </tr>
                         </Fragment>
-                    ) : null }
+                    ) : null}
 
 
-                    { 'Scene' === hotspot.realType ? (
+                    {'Scene' === hotspot.realType ? (
                         <Fragment>
                             <tr>
                                 <th>Icon Direction</th>
                                 <td className='icon-direction-settings'>
-                                    { iconPanoDirection.map( ( direction, key ) => {
+                                    {iconPanoDirection.map((direction, key) => {
                                         return (
                                             <div
                                                 className="icon-direction-settings__single"
-                                                key={ key }
+                                                key={key}
                                             >
                                                 <div
                                                     className='vrpress-hotspot iconType-Scene'
-                                                    style={ { transform: `rotate(${direction})` } }
+                                                    style={{ transform: `rotate(${direction})` }}
                                                 >
                                                     <div className="hotspot"><div className="in"></div><div className="out"></div></div>
                                                 </div>
                                                 <input
                                                     type="radio"
-                                                    name={ `${ name }[${ hotspot.realType }][iconDirection]` }
-                                                    checked={ ( hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].iconDirection ) ? direction === hotspot[ hotspot.realType ].iconDirection : 0 === key }
-                                                    value={ direction }
+                                                    name={`${name}[${hotspot.realType}][iconDirection]`}
+                                                    checked={(hotspot[hotspot.realType] && hotspot[hotspot.realType].iconDirection) ? direction === hotspot[hotspot.realType].iconDirection : 0 === key}
+                                                    value={direction}
                                                     onChange={e => {
-                                                        setHotspotByType( hotspot.realType )( 'iconDirection', direction );
+                                                        setHotspotByType(hotspot.realType)('iconDirection', direction);
                                                     }}
                                                 ></input>
                                             </div>
                                         );
-                                    }) }
+                                    })}
                                 </td>
                             </tr>
                             <tr>
@@ -240,73 +259,73 @@ export default ( props ) => {
                                 <td>
                                     <Fragment>
                                         <select
-                                            value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].sceneId ? hotspot[ hotspot.realType ].sceneId : '' }
-                                            name={ `${ name }[${ hotspot.realType }][sceneId]` }
+                                            value={hotspot[hotspot.realType] && hotspot[hotspot.realType].sceneId ? hotspot[hotspot.realType].sceneId : ''}
+                                            name={`${name}[${hotspot.realType}][sceneId]`}
                                             className='large-text'
-                                            onChange={ ( e ) => {
+                                            onChange={(e) => {
                                                 e.preventDefault();
-                                                setHotspotByType( hotspot.realType )( 'sceneId', e.target.value );
-                                            } }
+                                                setHotspotByType(hotspot.realType)('sceneId', e.target.value);
+                                            }}
                                         >
                                             <option value="">Select a pano to link to</option>
-                                            { scenes.map( ( scene, index ) => {
-                                                return currentScene !== scene ? <option value={ scene.id } key={ index } >{ scene.title }</option> : '';
-                                            }) }
-                                        </select>   
+                                            {scenes.map((scene, index) => {
+                                                return currentScene !== scene ? <option value={scene.id} key={index} >{scene.title}</option> : '';
+                                            })}
+                                        </select>
                                         <p className="description">Navigate to another pano on click event.</p>
                                     </Fragment>
                                 </td>
                             </tr>
                         </Fragment>
-                    ) : null }
+                    ) : null}
 
-                    { 'Video' === hotspot.realType || 'Audio' === hotspot.realType ? (
+                    {'Video' === hotspot.realType || 'Audio' === hotspot.realType ? (
                         <tr>
                             <th>Media Url</th>
                             <td>
                                 <Fragment>
-                                    { hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? (
+                                    {hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? (
                                         <input
                                             type="text"
                                             className='large-text disabled'
-                                            name={ `${ name }[${ hotspot.realType }][url]` }
-                                            value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? hotspot[ hotspot.realType ].url : '' }
-                                            onChange={ () => { return; } }
+                                            name={`${name}[${hotspot.realType}][url]`}
+                                            value={hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? hotspot[hotspot.realType].url : ''}
+                                            onChange={() => { return; }}
                                         />
-                                    ) : '' }
+                                    ) : ''}
                                     <MediaUpload
-                                        name={ `${ name }[${ hotspot.realType }][url]` }
-                                        url={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? hotspot[ hotspot.realType ].url : '' }
-                                        setCallBack={ ( attachment ) => {
-                                            setHotspotByType( hotspot.realType )( 'url', attachment.url );
-                                        } }
-                                        clearCallBack={ () => {
-                                            setHotspotByType( hotspot.realType )( 'url', '' );
-                                        } }
+                                        name={`${name}[${hotspot.realType}][url]`}
+                                        url={hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? hotspot[hotspot.realType].url : ''}
+                                        setCallBack={(attachment) => {
+                                            setHotspotByType(hotspot.realType)('url', attachment.url);
+                                        }}
+                                        clearCallBack={() => {
+                                            setHotspotByType(hotspot.realType)('url', '');
+                                        }}
                                     />
                                     <p className="description">Show media content in modal.</p>
                                 </Fragment>
                             </td>
                         </tr>
-                    ) : null }
+                    ) : null}
 
-                    { 'oEmbed' === hotspot.realType ? (
+                    {'oEmbed' === hotspot.realType ? (
                         <Fragment>
                             <tr>
                                 <th>Icon Type:</th>
                                 <td>
                                     <select
-                                        value={ hotspot.iconType ? hotspot.iconType : 'Video' }
+                                        value={hotspot.iconType ? hotspot.iconType : 'Video'}
                                         className='large-text'
-                                        name={ `${ name }[iconType]` }
-                                        onChange={ ( e ) => {
+                                        name={`${name}[iconType]`}
+                                        onChange={(e) => {
                                             e.preventDefault();
-                                            setHotspot( 'iconType', e.target.value );
-                                        } }
+                                            setHotspot('iconType', e.target.value);
+                                        }}
                                     >
-                                        { iconTypes.map( ( type, index ) => {
-                                            return <option value={ type } key={ index } >{ type }</option>;
-                                        }) }
+                                        {iconTypes.map((type, index) => {
+                                            return <option value={type} key={index} >{type}</option>;
+                                        })}
                                     </select>
                                     <p className="description">Icon of the hotspot</p>
                                 </td>
@@ -317,40 +336,40 @@ export default ( props ) => {
                                     <input
                                         type="url"
                                         className='large-text'
-                                        name={ `${ name }[${ hotspot.realType }][url]` }
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].url ? hotspot[ hotspot.realType ].url : '' }
-                                        onChange={ ( e ) => {
+                                        name={`${name}[${hotspot.realType}][url]`}
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].url ? hotspot[hotspot.realType].url : ''}
+                                        onChange={(e) => {
                                             e.preventDefault();
-                                            setHotspotByType( hotspot.realType )( 'url', e.target.value );
-                                        } }
+                                            setHotspotByType(hotspot.realType)('url', e.target.value);
+                                        }}
                                     />
                                     <button
                                         className="className='button button-secondary button-large"
-                                        style={ { 'marginTop': '10px' } }
-                                        onClick={ async( e ) => {
+                                        style={{ 'marginTop': '10px' }}
+                                        onClick={async (e) => {
                                             e.preventDefault();
-                                            const response = await getoEmbed( hotspot[ hotspot.realType ].url );
+                                            const response = await getoEmbed(hotspot[hotspot.realType].url);
 
-                                            if ( 'object' !== typeof response || isNaN( response.width ) || isNaN( response.height ) ) {
-                                                setHotspotByType( hotspot.realType )( 'width', '' );
-                                                setHotspotByType( hotspot.realType )( 'height', '' );
-                                                setHotspotByType( hotspot.realType )( 'embedUrl', '' );
-                                                setHotspotByType( hotspot.realType )( 'status', 'Invalid' );
+                                            if ('object' !== typeof response || isNaN(response.width) || isNaN(response.height)) {
+                                                setHotspotByType(hotspot.realType)('width', '');
+                                                setHotspotByType(hotspot.realType)('height', '');
+                                                setHotspotByType(hotspot.realType)('embedUrl', '');
+                                                setHotspotByType(hotspot.realType)('status', 'Invalid');
                                                 return;
                                             }
 
-                                            setHotspotByType( hotspot.realType )( 'width', response.width );
-                                            setHotspotByType( hotspot.realType )( 'height', response.height );
-                                            setHotspotByType( hotspot.realType )( 'embedUrl', response.src );
-                                            setHotspotByType( hotspot.realType )( 'status', 'Valid' );
-                                        } }
+                                            setHotspotByType(hotspot.realType)('width', response.width);
+                                            setHotspotByType(hotspot.realType)('height', response.height);
+                                            setHotspotByType(hotspot.realType)('embedUrl', response.src);
+                                            setHotspotByType(hotspot.realType)('status', 'Valid');
+                                        }}
                                     >Fetch before save
-                                    { hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].status ? (
-                                        <span
-                                            className={ `oembed-status ${ 'Valid' === hotspot[ hotspot.realType ].status ? 'valid' : 'invalid' }` }
-                                            style={ { 'marginLeft': '10px' } }
-                                        >({ 'Valid' === hotspot[ hotspot.realType ].status ? 'valid' : 'invalid' })</span>
-                                    ) : '' }
+                                        {hotspot[hotspot.realType] && hotspot[hotspot.realType].status ? (
+                                            <span
+                                                className={`oembed-status ${'Valid' === hotspot[hotspot.realType].status ? 'valid' : 'invalid'}`}
+                                                style={{ 'marginLeft': '10px' }}
+                                            >({'Valid' === hotspot[hotspot.realType].status ? 'valid' : 'invalid'})</span>
+                                        ) : ''}
                                     </button>
                                     <p className="description">Url to fetch oEmbed content from third party service. click 'Fetch before save' button after url is in place.</p>
                                 </td>
@@ -360,35 +379,35 @@ export default ( props ) => {
                                     <input
                                         type="hidden"
                                         className='large-text'
-                                        name={ `${ name }[${ hotspot.realType }][width]` }
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].width ? hotspot[ hotspot.realType ].width : '' }
-                                        onChange={ () => { return; } }
+                                        name={`${name}[${hotspot.realType}][width]`}
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].width ? hotspot[hotspot.realType].width : ''}
+                                        onChange={() => { return; }}
                                     />
                                     <input
                                         type="hidden"
                                         className='large-text'
-                                        name={ `${ name }[${ hotspot.realType }][status]` }
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].status ? hotspot[ hotspot.realType ].status : '' }
-                                        onChange={ () => { return; } }
+                                        name={`${name}[${hotspot.realType}][status]`}
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].status ? hotspot[hotspot.realType].status : ''}
+                                        onChange={() => { return; }}
                                     />
                                     <input
                                         type="hidden"
                                         className='large-text'
-                                        name={ `${ name }[${ hotspot.realType }][height]` }
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].height ? hotspot[ hotspot.realType ].height : '' }
-                                        onChange={ () => { return; } }
+                                        name={`${name}[${hotspot.realType}][height]`}
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].height ? hotspot[hotspot.realType].height : ''}
+                                        onChange={() => { return; }}
                                     />
                                     <input
                                         type="hidden"
                                         className='large-text'
-                                        name={ `${ name }[${ hotspot.realType }][embedUrl]` }
-                                        value={ hotspot[ hotspot.realType ] && hotspot[ hotspot.realType ].embedUrl ? hotspot[ hotspot.realType ].embedUrl : '' }
-                                        onChange={ () => { return; } }
+                                        name={`${name}[${hotspot.realType}][embedUrl]`}
+                                        value={hotspot[hotspot.realType] && hotspot[hotspot.realType].embedUrl ? hotspot[hotspot.realType].embedUrl : ''}
+                                        onChange={() => { return; }}
                                     />
                                 </td>
                             </tr>
                         </Fragment>
-                        ) : null }
+                    ) : null}
                 </tbody>
             </table>
         </Fragment>
