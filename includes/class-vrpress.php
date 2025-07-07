@@ -712,16 +712,24 @@ class VRPress {
 						$html .= 'title: "' . esc_html( $hotspot['text'] ) . '",';
 						$html .= 'type: "' . esc_html( 'Scene' === $hotspot['realType'] ? 'scene' : 'info' ) . '",';
 						$html .= 'realType: "' . esc_html( $hotspot['realType'] ) . '",';
+
 						if ( isset( $hotspot['iconType'] ) ) {
 							$html .= 'iconType: "' . esc_html( $hotspot['iconType'] ) . '",';
 						}
 
 						$hotspot['content'] = '';
 						foreach ( $hotspot[ $hotspot['realType'] ] as $key => $value ) {
-							if( $key !== 'content' ) {
+							if ( $key !== 'content' ) {
 								$html .= esc_html( $key ) . ': "' . esc_html( $value ) . '",';
 							}
 						}
+
+						if ( 'Link' === $hotspot['realType'] && isset( $hotspot[ $hotspot['realType'] ]['newTab'] ) && $hotspot[ $hotspot['realType'] ]['newTab'] ) {
+							$hotspot['attribute']['target'] = '_blank';
+						} else {
+							$hotspot['attribute']['target'] = '_self';
+						}
+
 						if ( 'Info' === $hotspot['realType'] ) {
 							$hotspot['content'] = $hotspot[ $hotspot['realType'] ]['content'];
 						}
